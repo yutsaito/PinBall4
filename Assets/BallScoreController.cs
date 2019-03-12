@@ -18,6 +18,13 @@ public class BallScoreController : MonoBehaviour
     //ｹﾞｰﾑｽｺｱ表示用ﾃｷｽﾄのｵﾌﾞｼﾞｪｸﾄの取得のための箱
     private GameObject gamescoreText;
 
+    //流れ星ｲﾝｽﾀﾝｽ ここで"public"宣言しておけば、後からInspectorで、これにProjectの「ShootingStarPrefab」をﾄﾞﾗｯｸﾞして指定できる
+    public GameObject shootingStarPrefab;
+    private bool is500ptss;
+    Rigidbody myRigidbody;
+    private float scoreDevide100=0.00f;
+    private float scoreDevide100Before = 0.00f;
+
     // Use this for initialization
     void Start()
     {
@@ -29,8 +36,24 @@ public class BallScoreController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ////100点の倍数にちょうどなったら流れ星を発生させる
+        ////これだとすごくたくさんできてしまう  `→　scoreDevide100 と ScoreDevide100Beforeを比べて、大きくなっていれば次のscore%100の条件に進めるようにした
+        //scoreDevide100 =score/100;
+        //if(scoreDevide100>scoreDevide100Before && score % 100 == 0) ShootingStarGeneration();
+    } 
 
-    }       //scoreを計算(Tagで当たりを判定)
+    //private void ShootingStarGeneration()
+    //{
+    //    GameObject shootingStar = Instantiate(shootingStarPrefab) as GameObject;
+    //    myRigidbody = shootingStar.GetComponent<Rigidbody>();
+    //    myRigidbody.AddForce(-3, 1, 1);     //左上に打ち出す
+    //    scoreDevide100Before = scoreDevide100;
+    //   //shootingStar.transform.position = new Vector3(0, shootingStar.transform.position.y, 0);
+    //}
+    
+
+
+    //scoreを計算(Tagで当たりを判定)
             //onColloision
             //cube同士での衝突＋100 cube以外との衝突＋100
     void OnCollisionEnter(Collision collision)
@@ -52,8 +75,12 @@ public class BallScoreController : MonoBehaviour
         }
         else if (yourTag == "LargeCloudTag")
         {
-            score = +15;
+            score += 15;
         }
+        //else if (yourTag == "ShootingStarTag")
+        //{
+        //    score += 995;
+        //}
 
         //scoreをﾃｷｽﾄにして表示
         //this.gamescoreText.GetComponent<Text>().text = score.ToString("D4") + " Pts";

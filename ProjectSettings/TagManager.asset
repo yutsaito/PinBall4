@@ -10,6 +10,7 @@ TagManager:
   - SmallCloudTag
   - LargeStarTag
   - LargeCloudTag
+  - ShootingStarTag
   layers:
   - Default
   - TransparentFX
