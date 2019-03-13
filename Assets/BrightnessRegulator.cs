@@ -110,7 +110,7 @@ public class BrightnessRegulator : MonoBehaviour
                 Rigidbody myRigidbody = ball.GetComponent<Rigidbody>();
                 Vector3 forceDirection = new Vector3(myRigidbody.velocity.x*(-0.5f)*30.0f, myRigidbody.velocity.y*(-0.5f)*30.0f, myRigidbody.velocity.z*(-0.5f)*30.0f);  //跳ね返る方向ﾍﾞｸﾄﾙは直前の速度ﾍﾞｸﾄﾙの
                 myRigidbody.AddForce(forceDirection);
-                Debug.Log(myRigidbody.velocity.y);
+               // Debug.Log(myRigidbody.velocity.y);
                 //そこそこうまくできたが、壁を簡単に乗り越えるようになった。壁やｵﾌﾞｼﾞｪｸﾄのY方向の厚みを2倍にし、カメラをとうざけ角度を狭めた
             }
         }
